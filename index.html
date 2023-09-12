@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            let x = Math.floor(Math.random() * 3 + 1)
+
+            if (x == 1) {
+                return compChoice = "rock";
+            } else if (x == 2) {
+                return compChoice = "paper";
+            } else {
+                return compChoice = "scissors";
+            }
+        }
+        // console.log(getComputerChoice())
+
+        function getPlayersChoice () {
+            let text = prompt("Please enter your choice of either: Rock, Paper or Scissors.")
+            return playerChoice = text.toLowerCase()
+        }
+        // console.log(getPlayersChoice())
+
+        function playGame(){
+            getPlayersChoice()
+            getComputerChoice()
+            if (playerChoice == compChoice) {
+                matchResult = "tie"
+                return console.log(`Close game, it's a draw!`)
+            }
+            if (playerChoice == "rock" && compChoice == "paper" ||
+            (playerChoice == "paper" && compChoice == "scissors") ||
+            (playerChoice == "scissors" && compChoice == "rock")) {
+                matchResult = "lose"
+                return console.log(`You lose, ${compChoice} beats ${playerChoice}`)
+            } else if (playerChoice != "rock" && playerChoice != "paper" && playerChoice != "scissors") {
+                return console.log("I see you didn't enter what was asked of you, aren't you a cheeky one!")
+            } else {
+                matchResult = "win"
+                return console.log(`You win, ${playerChoice} beats ${compChoice}`)
+            }
+        }
+        // console.log(playGame())
+
+        function game() {
+            let playerPoints = 0;
+            let compPoints = 0;
+            for (let i = 0; i < 5; i++) {
+                playGame()
+                if (matchResult == "win") {
+                    playerPoints++
+                } else if (matchResult == "lose") {
+                    compPoints++
+                }
+            }
+            if (playerPoints == compPoints) {
+                return "It's a tie!"
+            } else if (playerPoints > compPoints) {
+                return `Well done! You win. ${playerPoints} to ${compPoints} `
+            } else {
+                return `You lose. ${compPoints} to ${playerPoints}`
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
