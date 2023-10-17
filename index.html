@@ -35,12 +35,13 @@
         } else if (
           (playerChoice == "rock" && compChoice == "paper") ||
           (playerChoice == "paper" && compChoice == "scissors") ||
-          (playerChoice == "scissors" && compChoice == "rock")) {
-            matchResult = "lose";
-            textResult = `You lose, ${compChoice} beats ${playerChoice}`;
+          (playerChoice == "scissors" && compChoice == "rock")
+        ) {
+          matchResult = "lose";
+          textResult = `You lose, ${compChoice} beats ${playerChoice}`;
         } else {
-            matchResult = "win";
-            textResult = `You win, ${playerChoice} beats ${compChoice}`;
+          matchResult = "win";
+          textResult = `You win, ${playerChoice} beats ${compChoice}`;
         }
       }
 
@@ -51,14 +52,16 @@
         } else if (matchResult == "lose") {
           compPoints++;
         }
-        return currentScore = `The current score is - Your points: ${playerPoints} Computer points: ${compPoints}`
+        return (currentScore = `The current score is - Your points: ${playerPoints} Computer points: ${compPoints}`);
       }
 
       const rock = document.querySelector("#rock");
       const scissors = document.querySelector("#scissors");
       const paper = document.querySelector("#paper");
       const display = document.querySelector("#text");
-      const score = document.querySelector('#score')
+      const score = document.querySelector("#score");
+      const div = document.querySelector("div");
+      const endgame = document.createElement("h2");
 
       let playerPoints = 0;
       let compPoints = 0;
@@ -66,16 +69,18 @@
       rock.addEventListener("click", () => {
         playerChoice = "rock";
         playGame();
-        game()
-        display.textContent = textResult
+        game();
+        display.textContent = textResult;
         score.textContent = currentScore;
+        checkWin();
       });
       scissors.addEventListener("click", () => {
         playerChoice = "scissors";
         playGame();
-        game()
+        game();
         display.textContent = textResult;
         score.textContent = currentScore;
+        checkWin();
       });
       paper.addEventListener("click", () => {
         playerChoice = "paper";
@@ -83,7 +88,18 @@
         game();
         display.textContent = textResult;
         score.textContent = currentScore;
+        checkWin();
       });
+
+      function checkWin() {
+        if (playerPoints >= 5 && playerPoints > compPoints) {
+          endgame.textContent = "Congratulations, you win!";
+          div.appendChild(endgame);
+        } else if (compPoints >= 5 && playerPoints < compPoints)  {
+          endgame.textContent = "Unfortunate, you lose.";
+          div.appendChild(endgame);
+        }
+      }
     </script>
   </body>
 </html>
