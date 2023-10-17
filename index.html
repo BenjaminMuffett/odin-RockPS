@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="rock">Rock</button>
+    <button id="scissors">Scissors</button>
+    <button id="paper">Paper</button>
+    <div>
+        <p id="text"></p>
+    </div>
+    
+
+
     <script>
         function getComputerChoice() {
             let x = Math.floor(Math.random() * 3 + 1)
@@ -20,14 +29,14 @@
         }
         // console.log(getComputerChoice())
 
-        function getPlayersChoice () {
-            let text = prompt("Please enter your choice of either: Rock, Paper or Scissors.")
-            return playerChoice = text.toLowerCase()
-        }
+        // function getPlayersChoice () {
+        //     let text = prompt("Please enter your choice of either: Rock, Paper or Scissors.")
+        //     return playerChoice = text.toLowerCase()
+        // }
         // console.log(getPlayersChoice())
 
         function playGame(){
-            getPlayersChoice()
+            // getPlayersChoice()
             getComputerChoice()
             if (playerChoice == compChoice) {
                 matchResult = "tie"
@@ -66,6 +75,30 @@
                 return `You lose. ${compPoints} to ${playerPoints}`
             }
         }
+        const rock = document.querySelector('#rock')
+        const scissors = document.querySelector('#scissors')
+        const paper = document.querySelector('#paper')
+        const display = document.querySelector('#text')
+
+
+        rock.addEventListener('click', () => {
+            playerChoice = 'rock'
+            playGame()
+            display.textContent = matchResult
+        })
+        scissors.addEventListener('click', () => {
+            playerChoice = 'scissors'
+            playGame()
+            display.textContent = matchResult
+        })
+        paper.addEventListener('click', () => {
+            playerChoice = 'paper'
+            playGame()
+            display.textContent = matchResult
+        })
+        
+
+
 
     </script>
     
